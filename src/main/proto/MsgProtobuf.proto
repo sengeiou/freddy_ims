@@ -1,0 +1,23 @@
+syntax = "proto3";// 指定protobuf版本
+option java_package = "com.freddy.ims.protobuf";
+option java_outer_classname = "MsgProtobuf";
+
+message Msg {
+    Head head = 1;// 消息头
+    Body body = 2;// 消息体
+}
+
+message Head {
+    string msgId = 1;// 消息id
+    int32 msgType = 2;// 消息类型
+    string fromId = 3;// 发送者id
+    string toId = 4;// 接收者id
+    int64 timestamp = 5;// 消息发送时间
+    int32 status = 6;// 消息发送状态
+    string data = 7;// 扩展字段，以key/value形式存放的json
+}
+
+message Body {
+    int32 contentType = 1;// 消息内容类型
+    string content = 2;// 消息内容
+}
