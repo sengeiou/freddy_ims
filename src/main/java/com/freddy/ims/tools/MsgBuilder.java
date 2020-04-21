@@ -6,6 +6,8 @@ import com.freddy.ims.IMSMsg;
 import com.freddy.ims.protobuf.MsgProtobuf;
 import com.freddy.ims.tools.json.JSONParser;
 
+import io.netty.util.internal.StringUtil;
+
 /**
  * Created by ChenS on 2019/12/30.
  * chenshichao@outlook.com
@@ -25,8 +27,8 @@ public final class MsgBuilder {
             headBuilder.setMsgId(msgId);
         }
 
-        int msgType = msg.getMsgType();
-        if (msgType != 0) {
+        String msgType = msg.getMsgType();
+        if (!StringUtil.isNullOrEmpty(msgType)) {
             headBuilder.setMsgType(msgType);
         }
 
@@ -50,19 +52,19 @@ public final class MsgBuilder {
             headBuilder.setStatus(status);
         }
 
-        String data = msg.getData();
-        if (!TextUtils.isEmpty(data)) {
-            headBuilder.setData(data);
-        }
-
-        int contentType = msg.getContentType();
-        if (contentType != 0) {
+        String contentType = msg.getContentType();
+        if (!StringUtil.isNullOrEmpty(contentType)) {
             bodyBuilder.setContentType(contentType);
         }
 
         String content = msg.getContent();
         if (!TextUtils.isEmpty(content)) {
             bodyBuilder.setContent(content);
+        }
+
+        String extension = msg.getExtension();
+        if(!StringUtil.isNullOrEmpty(extension)) {
+            bodyBuilder.setExtension(extension);
         }
 
         MsgProtobuf.Msg.Builder msgBuilder = MsgProtobuf.Msg.newBuilder();
@@ -86,13 +88,13 @@ public final class MsgBuilder {
             msg.setToId(head.getToId());
             msg.setTimestamp(head.getTimestamp());
             msg.setStatus(head.getStatus());
-            msg.setData(head.getData());
         }
 
         MsgProtobuf.Body body = protobufMsg.hasBody() ? protobufMsg.getBody() : null;
         if (body != null) {
-            msg.setContentType(body.getContentType());
             msg.setContent(body.getContent());
+            msg.setContentType(body.getContentType());
+            msg.setExtension(body.getExtension());
         }
 
         return msg;

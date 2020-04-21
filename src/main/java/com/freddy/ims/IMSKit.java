@@ -80,8 +80,7 @@ public class IMSKit {
     }
 
     public boolean isNetworkAvailable() {
-//        return this.networkAvailable;
-        return true;
+        return this.networkAvailable;
     }
 
     private void printConfiguration() {

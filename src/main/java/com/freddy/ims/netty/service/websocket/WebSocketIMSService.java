@@ -71,6 +71,7 @@ public class WebSocketIMSService extends AbstractIMSService implements IMSInterf
 
     @Override
     public void sendMsg(IMSMsg msg) {
+        Log.d(IMSConfiguration.TAG, "sendMsg() msg = " + msg);
         if (configuration == null) {
             Log.e(IMSConfiguration.TAG, "发送消息失败，reason : IMSConfiguration is null.");
             return;

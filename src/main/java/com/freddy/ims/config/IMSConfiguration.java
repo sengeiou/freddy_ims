@@ -34,11 +34,13 @@ public class IMSConfiguration {
     // IMS连接状态回调，应用层实现此接口
     private I_IMSConnectStateListener imsConnectStateListener;
     // 认证消息类型
-    private int authMsgType;
+    private String authMsgType;
     // 心跳消息类型
-    private int heartbeatMsgType;
+    private String heartbeatMsgType;
     // 用户token，用于认证
     private String token;
+
+    public static final String KEY_TOKEN = "token";
 
     public CommunicationProtocol getCommunicationProtocol() {
         return communicationProtocol;
@@ -128,19 +130,19 @@ public class IMSConfiguration {
         this.serverList = serverList;
     }
 
-    public int getAuthMsgType() {
+    public String getAuthMsgType() {
         return authMsgType;
     }
 
-    private void setAuthMsgType(int authMsgType) {
+    private void setAuthMsgType(String authMsgType) {
         this.authMsgType = authMsgType;
     }
 
-    public int getHeartbeatMsgType() {
+    public String getHeartbeatMsgType() {
         return heartbeatMsgType;
     }
 
-    private void setHeartbeatMsgType(int heartbeatMsgType) {
+    private void setHeartbeatMsgType(String heartbeatMsgType) {
         this.heartbeatMsgType = heartbeatMsgType;
     }
 
@@ -215,12 +217,12 @@ public class IMSConfiguration {
             return this;
         }
 
-        public Builder setAuthMsgType(int authMsgType) {
+        public Builder setAuthMsgType(String authMsgType) {
             configuration.setAuthMsgType(authMsgType);
             return this;
         }
 
-        public Builder setHeartbeatMsgType(int heartbeatMsgType) {
+        public Builder setHeartbeatMsgType(String heartbeatMsgType) {
             configuration.setHeartbeatMsgType(heartbeatMsgType);
             return this;
         }

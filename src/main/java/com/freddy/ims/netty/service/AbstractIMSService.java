@@ -4,21 +4,17 @@ import android.util.Log;
 
 import com.freddy.ims.IMSKit;
 import com.freddy.ims.IMSMsg;
-import com.freddy.ims.config.CommunicationProtocol;
 import com.freddy.ims.config.IMSConfiguration;
 import com.freddy.ims.config.IMSConnectState;
-import com.freddy.ims.config.TransferProtocol;
 import com.freddy.ims.interf.IMSInterface;
 import com.freddy.ims.listener.I_IMSConnectStateListener;
 import com.freddy.ims.tools.ExecutorServiceFactory;
-import com.freddy.ims.tools.MsgBuilder;
 import com.google.gson.JsonObject;
 
 import java.util.UUID;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 /**
  * Created by ChenS on 2019/12/26.
@@ -90,9 +86,9 @@ public abstract class AbstractIMSService implements IMSInterface {
         msg.setMsgId(UUID.randomUUID().toString());
         msg.setMsgType(configuration.getAuthMsgType());
         msg.setTimestamp(System.currentTimeMillis());
-        JsonObject data = new JsonObject();
-        data.addProperty("token", configuration.getToken());
-        msg.setData(data.toString());
+        JsonObject extension = new JsonObject();
+        extension.addProperty(IMSConfiguration.KEY_TOKEN, configuration.getToken());
+        msg.setExtension(extension.toString());
 
         sendMsg(msg);
     }

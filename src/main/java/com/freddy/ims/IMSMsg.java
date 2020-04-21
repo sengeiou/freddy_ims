@@ -7,14 +7,14 @@ package com.freddy.ims;
 public final class IMSMsg {
 
     private String msgId;
-    private int msgType;
+    private String msgType;
     private String fromId;
     private String toId;
     private long timestamp;
     private int status;
-    private int contentType;
     private String content;
-    private String data;
+    private String contentType;
+    private String extension;
 
     public String getMsgId() {
         return msgId;
@@ -24,11 +24,11 @@ public final class IMSMsg {
         this.msgId = msgId;
     }
 
-    public int getMsgType() {
+    public String getMsgType() {
         return msgType;
     }
 
-    public void setMsgType(int msgType) {
+    public void setMsgType(String msgType) {
         this.msgType = msgType;
     }
 
@@ -64,14 +64,6 @@ public final class IMSMsg {
         this.status = status;
     }
 
-    public int getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(int contentType) {
-        this.contentType = contentType;
-    }
-
     public String getContent() {
         return content;
     }
@@ -80,11 +72,34 @@ public final class IMSMsg {
         this.content = content;
     }
 
-    public String getData() {
-        return data;
+    public String getContentType() {
+        return contentType;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+
+    @Override
+    public String toString() {
+        return "IMSMsg{" +
+                "msgId='" + msgId + '\'' +
+                ", msgType='" + msgType + '\'' +
+                ", fromId='" + fromId + '\'' +
+                ", toId='" + toId + '\'' +
+                ", timestamp=" + timestamp +
+                ", status=" + status +
+                ", content='" + content + '\'' +
+                ", contentType='" + contentType + '\'' +
+                ", extension='" + extension + '\'' +
+                '}';
     }
 }
